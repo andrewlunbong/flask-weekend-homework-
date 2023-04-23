@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>{{ title }} - Books</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+    <ul>
+      <li class="navLink"><a href="/books">Home</a></li>
+    </ul>
+    </nav>
+     <h1> All Books </h1>
+     <form action="/books" method="post">
+    <label for="add_name" >Book Name:</label>
+    <input type="text" name="add_name" id="add_name">
+    <label for="add_author">Author</label>
+    <input type="text" name="add_author" id="add_author">
+    <label for="add_genre">Genre</label>
+    <input type="text" name="add_genre" id="add_genre">
+    <input type="submit" value="Add Book">
+    </form>
+
+    {% for book in books %}
+    <p>
+    <b> <a href="/books/{{books.index(book) + 1}}">{{ book.name }}</b> <b> {{ book.author }}</a>: </b> {{ book.genre }}  
+    <form action='/books/delete' method='post'>
+    <input type='hidden' name='book' value='{{book.name}}'>
+    <input type='submit' value='Delete'>
+    </form>
+    </p>
+    {% endfor %}
+</body>
+</html>
+
